@@ -1,0 +1,12 @@
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="customFieldset">
+    <apiVersion>50.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target> <!-- This is for the Record Page -->
+     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="fieldset" type="string" datasource="apex://FieldSetPicklist"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

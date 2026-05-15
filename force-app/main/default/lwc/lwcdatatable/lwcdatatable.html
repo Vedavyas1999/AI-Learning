@@ -1,0 +1,12 @@
+<template>
+    Accounts Table
+    <template if:true={accounts}>
+        <lightning-datatable
+      key-field="id"
+      data={accounts}
+      columns={columns}
+    ></lightning-datatable>
+    </template>
+    <template if:true={error}>Error-{error}</template>
+    
+</template>

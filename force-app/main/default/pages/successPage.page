@@ -1,0 +1,11 @@
+<apex:page showHeader="false" standardStylesheets="false" controller="OppWithContactController">
+    <apex:outputPanel layout="block" styleClass="slds-scope">
+        <apex:slds />
+        <div class="slds-m-around_medium slds-align_absolute-center">
+            <p class="slds-text-heading_large">Submitted Successfully!</p>
+            <apex:form >
+                <apex:commandLink action="{!URLFOR($Page.OppVFpage)}" value="Go back to Request Evaalution Form" styleClass="slds-button slds-button_neutral slds-m-top_medium" />
+            </apex:form>
+        </div>
+    </apex:outputPanel>
+</apex:page>

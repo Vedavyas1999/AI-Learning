@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="" >
+    <lightning-tabset onactive={handleTabChange} class="slds-list_horizontal">
+        <lightning-tab label="Sales" value="Sales">
+            <c-child-component-one></c-child-component-one>
+        </lightning-tab><br/>
+        <lightning-tab label="Service" value="Service">
+            <c-child-component-two></c-child-component-two>
+        </lightning-tab>
+    </lightning-tabset>
+    
+    </lightning-card>
+</template>

@@ -1,0 +1,12 @@
+<template>
+<lightning-card title="Create Account" icon-name="standard:account">
+    <div class="slds-p-around_medium">
+        <lightning-input label="Account Name" name="accountName" value={accountName} onchange={handleAccountChange}></lightning-input>
+<lightning-input label="Website" name="website" value={website} onchange={handleAccountChange}></lightning-input>
+
+
+            <lightning-button variant="brand" label="Create Account" onclick={createAccount}></lightning-button>
+    </div>
+    <lightning-toast if:true={showToast} variant="success" title="Success" message="Account created successfully {accountId}" onclose={handleToastClose}></lightning-toast>
+</lightning-card>
+</template>

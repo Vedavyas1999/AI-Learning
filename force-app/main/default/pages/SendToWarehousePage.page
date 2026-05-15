@@ -1,0 +1,195 @@
+<apex:page controller="SendToWarehouse" renderAs="pdf">
+    <html>
+        <head>
+            <style>
+                tr { page-break-inside: avoid; page-break-after: auto }
+            </style>
+        </head>
+        <body>
+              <!-- Display Opportunities without the same Contact -->
+            <apex:pageBlock rendered="{!opplistWithoutSameContact.size > 0}">
+                <h2>Opportunities without the Same Contact</h2>
+                <table>
+                    <apex:repeat value="{!opplistWithoutSameContact}" var="opp">
+                        <tr>
+                            <td>
+                                {!IF(opp.DeliveryInstallationStatus__c = 'In progress', 'EXAM Copy', 'COPY')}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br/>
+                                <b>Opportunity Name:</b> {!opp.Name}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Account:</b> {!opp.Account.Name}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Close Date:</b> {!opp.CloseDate}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Stage:</b> {!opp.StageName}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Amount:</b> {!opp.Amount}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Probability:</b> {!opp.Probability}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Owner:</b> {!opp.Owner.Name}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Delivery/Installation Status:</b> {!opp.DeliveryInstallationStatus__c}
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>
+                                <b>Shipping Address:</b> {!opp.Shipping_Address__c}
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                       <apex:outputPanel rendered="{!IF(opp.Shipping_Address__c == 'Mailing Address' || opp.Shipping_Address__c == '', true, false)}">
+
+                                 <b>Contact Name:</b> {!opp.Contact__r.LastName}<br/>
+                                <b>Contact Mailing Street:</b> {!opp.Contact__r.MailingStreet}<br/>
+                                <b>Mailing City:</b> {!opp.Contact__r.MailingCity}, 
+                                <b>Mailing State:</b> {!opp.Contact__r.MailingState}, 
+                                <b>Mailing PostalCode:</b> {!opp.Contact__r.MailingPostalcode}<br/>
+                                <b>Mailing Country:</b> {!opp.Contact__r.MailingCountry}
+                                            </apex:outputPanel>
+                            </td>
+                           
+                        </tr>
+                        <tr>
+                            <td>
+                                {!opp.Contact__r.Email}
+                            </td>
+                        </tr>
+                        <br/>
+                    </apex:repeat>
+                </table>
+            </apex:pageBlock>
+            
+          <apex:pageBlock rendered="{!opplistWithSameContact.size > 0}">
+            <h2>Opportunities with the Same Contact</h2>
+            <apex:variable var="prevContactId" value="" />
+                      
+            <apex:repeat value="{!opplistWithSameContact}" var="opp">
+                <table>
+                    <apex:variable var="currentContactId" value="{!opp.Contact__c}" />
+                   
+                    <apex:outputPanel rendered="{!(currentContactId != prevContactId)}">
+                        
+                        <tr>
+                            <td>
+                                <b>Contact Name:</b> {!opp.Contact__r.LastName}<br/>
+                                <b>Contact Email:</b> {!opp.Contact__r.Email}
+                            </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <apex:outputPanel rendered="{!opp.Shipping_Address__c == 'Mailing Address'}">
+                                <b>Mailing Street:</b> {!opp.Contact__r.MailingStreet}<br/>
+                                <b>Mailing City:</b> {!opp.Contact__r.MailingCity}, 
+                                <b>Mailing State:</b> {!opp.Contact__r.MailingState}, 
+                                <b>Mailing PostalCode:</b> {!opp.Contact__r.MailingPostalcode}<br/>
+                                <b>Mailing Country:</b> {!opp.Contact__r.MailingCountry}
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!opp.Shipping_Address__c == 'Other Address'}">
+                                <b>Other Street:</b> {!opp.Contact__r.OtherStreet}<br/>
+                                <b>Other City:</b> {!opp.Contact__r.OtherCity}, 
+                                <b>Other State:</b> {!opp.Contact__r.OtherState}, 
+                                <b>Other PostalCode:</b> {!opp.Contact__r.OtherPostalCode}<br/>
+                                <b>Other Country:</b> {!opp.Contact__r.OtherCountry}
+                            </apex:outputPanel>
+                        </td>
+                    </tr>
+                         
+                    </apex:outputPanel>
+                    
+                    <apex:variable var="prevContactId" value="{!currentContactId}" />
+                    <tr>
+                        <td>
+                            {!IF(opp.DeliveryInstallationStatus__c = 'In progress', 'EXAM Copy', 'COPY')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><br/>
+                            <b>Opportunity Name:</b> {!opp.Name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Contact:</b> {!opp.Contact__r.LastName}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Close Date:</b> {!opp.CloseDate}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Stage:</b> {!opp.StageName}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Amount:</b> {!opp.Amount}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Probability:</b> {!opp.Probability}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Owner:</b> {!opp.Owner.Name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Delivery/Installation Status:</b> {!opp.DeliveryInstallationStatus__c}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Shipping Address:</b> {!opp.Shipping_Address__c}
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td><br/></td>
+                    </tr>
+                </table>
+            </apex:repeat>
+        </apex:pageBlock>
+          
+                <apex:pageBlock rendered="{!AND(ISBLANK(opplistWithSameContact) || opplistWithSameContact.size = 0, ISBLANK(opplistWithoutSameContact) || opplistWithoutSameContact.size = 0)}">
+
+                <b>
+                    <p style="color: red; font-size: 30px;">
+                        No records Found !!!<br/>
+                    </p>
+                </b>
+            </apex:pageBlock>
+        </body>
+    </html>
+</apex:page>

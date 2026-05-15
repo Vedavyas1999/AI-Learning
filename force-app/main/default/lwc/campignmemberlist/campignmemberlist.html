@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Campaign Members List" icon-name="standard:campaign">
+        <div class="slds-m-around_medium">
+            <template if:true={campaignId}>
+                <!-- Display Campaign Details -->
+                <lightning-record-view-form
+                    record-id={campaignId}
+                    object-api-name="Campaign"
+                    density="compact"
+                    mode="readonly">
+                </lightning-record-view-form>
+                
+                <!-- Display Campaign Members -->
+                <lightning-record-view-form
+                    record-id={campaignId}
+                    object-api-name="CampaignMember"
+                    density="compact"
+                    mode="readonly">
+                </lightning-record-view-form>
+            </template>
+            <template if:false={campaignId}>
+                <p>Please provide a Campaign Id to view Campaign Members.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

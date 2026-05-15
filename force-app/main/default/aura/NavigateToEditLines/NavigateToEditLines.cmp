@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:availableForFlowActions" access="global">
+    <aura:attribute name="recordId" type="String" />
+    <lightning:button label="Edit Quote Lines" onclick="{!c.navigateToEditLines}" />
+</aura:component>

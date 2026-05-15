@@ -1,0 +1,49 @@
+<apex:page controller="CreateOpportunityController">
+    <apex:form >
+        <!-- Book Information -->
+        <label>What Book are you Interested In?</label>
+        <apex:inputText value="{!bookTitle}"/><br/>
+        
+        <label>Has this book already been adopted?</label>
+        <apex:inputCheckbox value="{!hasBookBeenAdopted}"/><br/>
+        
+        <!-- Course Information -->
+        <label>Course Name and Number</label>
+        <apex:inputText value="{!courseName}"/>
+        <apex:inputText value="{!courseNumber}"/><br/>
+        
+        <label>When is the Course Offered?</label>
+        <apex:inputText value="{!courseOffered}"/><br/>
+        
+        <label>Anticipated Enrollment</label>
+        <apex:inputText value="{!projectedEnrollment}"/><br/>
+        
+        <label>Book Title used previously for this Course?</label>
+        <apex:inputText value="{!previousBookTitle}"/><br/>
+        
+        <!-- Personal Information -->
+        <label>Name</label>
+        <apex:inputText value="{!professorName}"/><br/>
+        
+        <label>Email Address</label>
+        <apex:inputText value="{!professorEmail}"/><br/>
+        
+        <label>Phone Number</label>
+        <apex:inputText value="{!professorPhone}"/><br/>
+        
+        <label>School Name</label>
+        <apex:inputText value="{!institutionName}"/><br/>
+        
+        <label>Department</label>
+        <apex:inputText value="{!department}"/><br/>
+        
+        <label>Job Title</label>
+        <apex:inputText value="{!title}"/><br/>
+        
+        <!-- Shipping Address -->
+        <label>Shipping Address</label>
+        <apex:inputTextarea value="{!mailingAddress}" rows="3"/><br/>
+        
+        <apex:commandButton value="Submit" action="{!submitRequest}"/>
+    </apex:form>
+</apex:page>

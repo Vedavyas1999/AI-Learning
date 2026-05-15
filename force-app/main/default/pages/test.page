@@ -1,0 +1,12 @@
+<apex:page standardController="Opportunity">
+  <apex:relatedList list="CombinedAttachments">
+    <apex:facet name="header">
+      <apex:outputPanel >
+        <apex:outputText value="My Notes"></apex:outputText>
+        <apex:form >
+          <apex:commandButton value="A Note" action="URL_OR_ACTION_METHOD"></apex:commandButton>
+        </apex:form>
+      </apex:outputPanel>
+    </apex:facet>
+  </apex:relatedList>
+</apex:page>

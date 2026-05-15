@@ -1,0 +1,44 @@
+<template>
+    <lightning-layout horizontal-align="spread">
+        <!-- Layout item for combobox -->
+        <lightning-layout-item size="6">
+            <lightning-combobox
+                label="Select Country"
+                value={selectedCountry}
+                options={countryOptions}
+                onchange={handleCountryChange}
+            ></lightning-combobox>
+        </lightning-layout-item>
+      <br>
+        <!-- Layout item for button -->
+        <lightning-layout-item size="6">
+            <lightning-button label="Get Records" onclick={handleGetRecords} variant="brand"></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+    <template if:true={accountRecords}>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Account Name">Account Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Account ID">Account ID</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={accountRecords} for:item="record">
+                    <tr key={record.Id}>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title={record.Name}>{record.Name}</div>
+                        </td>
+                        <td data-label="Account ID">
+                            <div class="slds-truncate" title={record.Id}>{record.Id}</div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+</template>

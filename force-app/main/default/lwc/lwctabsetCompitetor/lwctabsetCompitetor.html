@@ -1,0 +1,103 @@
+<template>
+    <lightning-tabset>
+        <lightning-tab label="Companies">
+            <!--Companies-->
+            <template if:true={groupRecords}>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-2">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer ">
+                         
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Country">Country</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Company">Company</div>
+                                    </th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={groupRecords} for:item="record">
+                                    <tr key={record.Id}>
+                                        <td data-label="Country">
+                                            <div class="slds-truncate" title={record.Country__c}>{record.Country__c}</div>
+                                        </td>
+                                        <td data-label="Name">
+                                            <div class="slds-truncate" title={record.Name}>{record.Name}</div>
+                                        </td>
+                                        <td data-label="More">
+                                            <lightning-button label="More" variant="brand" onclick={handleMoreClick} data-record-id={record.Id}></lightning-button>
+                                        </td>
+                                        <td data-label="Go">
+                                            <lightning-button label="Go" variant="brand" onclick={handleChildGoClick} data-record-id={record.Id}></lightning-button>
+                                        </td>
+                                        
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="slds-size_1-of-2">
+                        <template if:true={morebuttonclicked}>
+                            <!--Get Plant records for the Company -->
+                            <template if:true={hasChildRecords}>
+                                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Child Country">Company</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Child Company">Plant</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={childRecords} for:item="childRecord">
+                                            <tr key={childRecord.Id}>
+                                                <td data-label="plant company">
+                                                    <div class="slds-truncate" title={childRecord.Competitor__r.Name}>{childRecord.Competitor__r.Name}</div>
+                                                </td>
+                                                <td data-label="plant name">
+                                                    <div class="slds-truncate" title={childRecord.Name}>{childRecord.Name}</div>
+                                                </td>
+                                                <td data-label="Go">
+                                                    <lightning-button label="Go" variant="brand" onclick={go} ></lightning-button>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </template>
+                            
+                        &nbsp;&nbsp;
+                        <template if:true={hasNoChildRecords}>
+                            <div>No Plant records to Display</div>
+                        </template>
+                    </template>
+                    </div>
+                </div>
+                
+            </template>
+            
+        </lightning-tab>
+        <lightning-tab label="Docss(Annual Reports)">
+            <!-- -annual-reports
+            <c-notes-and-attachments-group-page
+            selected-group={selectedGroup}
+            ></c-notes-and-attachments-group-page> -->
+        </lightning-tab>
+        <lightning-tab label="Print Summary">
+            <!--print-summary-->
+            <!-- <c-printsummary
+            selected-group-name={selectedGroupName}></c-printsummary> -->
+        </lightning-tab>
+        <lightning-tab label="Klins Report">
+            <!-- klins-report -->
+            <!-- <c-kilns-report></c-kilns-report> -->
+        </lightning-tab>
+    </lightning-tabset>
+    
+</template>

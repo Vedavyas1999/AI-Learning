@@ -1,0 +1,19 @@
+<template>
+<lightning-card icon-name="standard:account" variant="base">
+  <lightning-layout-item flexibility="auto">
+   
+    <lightning-input label="Enter the Message"
+     value={Message} 
+     onchange={handleChangeEvent}>
+    </lightning-input>
+
+   </lightning-layout-item>
+
+ <lightning-layout-item flexibility="auto">
+
+   <c-componentchild message = {Message}></c-componentchild>
+
+</lightning-layout-item> 
+
+</lightning-card>
+</template>

@@ -1,0 +1,17 @@
+<!--
+  @description       : 
+  @author            : 
+  @group             : 
+  @last modified on  : 07-05-2023
+  @last modified by  : 
+-->
+
+<template>
+    <template if:true={ContactList}>
+     <ul>
+        <template for:each={ContactList.data} for:item="record">
+           <li key={record.id}>{record.Name}</li>
+        </template>
+     </ul>
+    </template>
+</template>

@@ -1,0 +1,142 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__body slds-card__body_inner">
+    <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-2">
+    <lightning-layout>
+       
+        <lightning-layout-item size="3" class="slds-var-p-vertical_xx-small slds-align-top">
+            <lightning-combobox
+                label="Select Country"
+                value={selectedCountry}
+                options={countryOptions}
+                onchange={handleCountryChange}
+            ></lightning-combobox> 
+           
+        </lightning-layout-item>&nbsp; &nbsp;
+        <lightning-layout-item size="3" class="slds-p-vertical_xx-small slds-align-bottom">
+            <lightning-button label="Display Country" onclick={handleGetcountry} variant="brand"></lightning-button>
+        </lightning-layout-item>
+</lightning-layout>
+</div>
+<div class="slds-size_1-of-2">
+
+<lightning-layout class="slds-align_absolute-right">
+    <!-- Layout item for Select Group combobox -->
+    <lightning-layout-item size="3" class="slds-var-p-vertical_xx-small slds-align-top">
+        <lightning-combobox
+            label="Select Group"
+            value={selectedGroup}
+            options={groupOptions}
+            onchange={handleGroupChange}
+        ></lightning-combobox>
+    </lightning-layout-item> &nbsp; &nbsp;
+
+    <!-- Layout item for Get Companies button -->
+    <lightning-layout-item size="3" class="slds-p-vertical_xx-small slds-align-bottom">
+        <lightning-button label="Display Group" onclick={handleGetGroups} variant="brand"></lightning-button>
+    </lightning-layout-item>
+   
+</lightning-layout>
+
+    <lightning-layout class="slds-align_absolute-right">
+         <lightning-layout-item size="3" class="slds-var-p-vertical_xx-small slds-align-top">
+            <lightning-combobox
+                label="Select Company"
+                value={selectedCompany}
+                options={companyOptions}
+                onchange={handleCompanyChange}
+            ></lightning-combobox> 
+        </lightning-layout-item>&nbsp; &nbsp;
+        <lightning-layout-item size="3" class="slds-p-vertical_xx-small slds-align-bottom">
+            <lightning-button label="Display Company" onclick={handleGetCompanies} variant="brand"></lightning-button>
+        </lightning-layout-item>
+        
+    </lightning-layout>
+<lightning-layout class="slds-align_absolute-right">
+         <lightning-layout-item size="3" class="slds-var-p-vertical_xx-small slds-align-top">
+            <lightning-combobox
+                label="Select Plants"
+                value={selectedplant}
+                options={plantOptions}
+                onchange={handleplantChange}
+            ></lightning-combobox> 
+        </lightning-layout-item>&nbsp; &nbsp;
+        <lightning-layout-item size="3" class="slds-p-vertical_xx-small slds-align-bottom">
+            <lightning-button label="Display Plant" onclick={handleGetplants} variant="brand"></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+</div>
+</div>
+<!--Display Group-->
+    <template if:true={showTabsetgroup}>
+        <div class="txtcolor">
+            <b> <p> >> Home  >> Selected Country : {selectedCountry} >> Group : {selectedGroupName} </p></b>
+         </div>
+        <template if:true={groupRecords}>
+            <c-lwctabset-compitetor
+group-records={groupRecords}
+morebuttonclicked={morebuttonclicked}
+has-child-records={hasChildRecords}
+child-records={childRecords}
+has-no-child-records={hasNoChildRecords}
+handle-more-click={handleMoreClick}
+handle-go-click={handleGoClick}
+hidecurrentcomponent={hidecurrentcomponent}
+selected-country={selectedCountry}
+selected-group={selectedGroup}
+selected-group-name={selectedGroupName}
+selected-company-name={selectedCompanyName}
+selected-company={selectedCompany}
+onchildgoevent={handleChildGoEvent}
+
+
+
+
+
+></c-lwctabset-compitetor>
+
+            
+        </template>
+        
+       <br>
+    
+</template>
+<template if:true={showTabsetCompany}>
+    <div class="txtcolor">
+   <b> <p> >> Home  >> Selected Country : {selectedCountry} >> Group : {selectedGroupName} >> Company : {selectedCompanyName}</p></b>
+</div>
+   <br>
+   <!--Display COmpany -->
+<lightning-tabset>
+    <lightning-tab label="General Info">
+        <!--General Info-->
+        <template if:true={groupRecords}>
+       
+<c-company-edit-page
+ selected-company={selectedCompany}
+ selected-company-name={selectedCompanyName}
+  received-record-id = {receivedRecordId}
+  has-child-records={hasChildRecords}
+ child-records={childRecords}
+ has-no-child-records={hasNoChildRecords}>
+
+</c-company-edit-page>
+
+            
+        </template>
+        
+    </lightning-tab>
+    
+    <lightning-tab label="Print Summary">
+        <!--print-summary-->
+        <!-- <c-printsummaryplant
+        selected-group-name={selectedGroupName}
+        selected-country={selectedCountry}></c-printsummaryplant> -->
+    </lightning-tab>
+    
+</lightning-tabset>
+</template>
+</div>
+</article>
+</template>

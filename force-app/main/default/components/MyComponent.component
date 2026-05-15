@@ -1,0 +1,5 @@
+<apex:component >
+    <h1>
+        This Message is coming from MyComponent
+    </h1>
+</apex:component>

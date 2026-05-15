@@ -1,0 +1,160 @@
+<template>
+    <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-2">
+    <lightning-layout>
+       
+        <lightning-layout-item size="3" class="slds-var-p-vertical_xx-smallmall slds-align-top">
+            <lightning-combobox
+                label="Select Country"
+                value={selectedCountry}
+                options={countryOptions}
+                onchange={handleCountryChange}
+            ></lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" class="slds-p-vertical_xx-small slds-align-bottom">
+            <lightning-button label="Display Country" onclick={handleGetcountry} variant="brand"></lightning-button>
+        </lightning-layout-item>
+</lightning-layout>
+</div>
+<div class="slds-size_1-of-2">
+
+<lightning-layout class="slds-align_absolute-right">
+    <!-- Layout item for Select Group combobox -->
+    <lightning-layout-item size="3" class="slds-var-p-vertical_xx-small slds-align-top">
+        <lightning-combobox
+            label="Select Group"
+            value={selectedGroup}
+            options={groupOptions}
+            onchange={handleGroupChange}
+        ></lightning-combobox>
+    </lightning-layout-item>
+
+    <!-- Layout item for Get Companies button -->
+    <lightning-layout-item size="3" class="slds-p-vertical_xx-small slds-align-bottom">
+        <lightning-button label="Display Group" onclick={handleGetGroups} variant="brand"></lightning-button>
+    </lightning-layout-item>
+   
+</lightning-layout>
+
+    <lightning-layout >
+         <lightning-layout-item size="3"  class="slds-var-p-vertical_xx-smallmall slds-align-top">
+            <lightning-combobox
+                label="Select Company"
+                value={selectedCompany}
+                options={companyOptions}
+                onchange={handleCompanyChange}
+            ></lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" class="slds-p-vertical_xx-small slds-align-bottom">
+            <lightning-button label="Display Company" onclick={handleGetCompanies} variant="brand"></lightning-button>
+        </lightning-layout-item>
+        
+    </lightning-layout>
+<lightning-layout>
+         <lightning-layout-item size="3" class="slds-var-p-vertical_xx-smallmall slds-align-top">
+            <lightning-combobox
+                label="Select Plants"
+                value={selectedplant}
+                options={plantOptions}
+                onchange={handleplantChange}
+            ></lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" class="slds-p-vertical_xx-small slds-align-bottom">
+            <lightning-button label="Display Plant" onclick={handleGetplants} variant="brand"></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+</div>
+</div>
+    <template if:true={showTabset}>
+    <lightning-tabset>
+        <lightning-tab label="Companies">
+            <template if:true={groupRecords}>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-2">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer ">
+                            <!-- ... your existing table structure ... -->
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Country">Country</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Company">Company</div>
+                                    </th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={groupRecords} for:item="record">
+                                    <tr key={record.Id}>
+                                        <td data-label="Name">
+                                            <div class="slds-truncate" title={record.Name}>{record.Country__c}</div>
+                                        </td>
+                                        <td data-label="Country">
+                                            <div class="slds-truncate" title={record.Country__c}>{record.Name}</div>
+                                        </td>
+                                        <td data-label="More">
+                                            <lightning-button label="More" variant="brand" onclick={handleMoreClick} data-record-id={record.Id}></lightning-button>
+                                        </td>
+                                        <td data-label="Go">
+                                            <lightning-button label="Go" variant="brand" onclick={handleGoClick} data-record-id={record.Id}></lightning-button>
+                                        </td>
+                                        
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="slds-size_1-of-2">
+                        <template if:true={morebuttonclicked}>
+                        <template if:true={hasChildRecords}>
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Child Country">Company</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Child Company">Plant</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={childRecords} for:item="childRecord">
+                                        <tr key={childRecord.Id}>
+                                            <td data-label="plant company">
+                                                <div class="slds-truncate" title={childRecord.Name}>{childRecord.Parent.Name}</div>
+                                            </td>
+                                            <td data-label="plant name">
+                                                <div class="slds-truncate" title={childRecord.Country__c}>{childRecord.Name}</div>
+                                            </td>
+                                            <td data-label="Go">
+                                                <lightning-button label="Go" variant="brand" onclick={handleGoClick} data-record-id={childRecord.Id}></lightning-button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                        <template if:true={hasNoChildRecords}>
+                            <div>No plant records found.</div>
+                        </template>
+                    </template>
+                    </div>
+                </div>
+                
+            </template>
+            
+        </lightning-tab>
+        <lightning-tab label="Docss(Annual Reports)">
+            <!-- -annual-reports-->
+        </lightning-tab>
+        <lightning-tab label="Print Summary">
+            <!--print-summary-->
+        </lightning-tab>
+        <lightning-tab label="Klins Report">
+            <!-- klins-report -->
+        </lightning-tab>
+    </lightning-tabset>
+</template>
+</template>

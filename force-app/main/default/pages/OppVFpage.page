@@ -1,0 +1,32 @@
+<apex:page controller="OppWithContactController" lightningStylesheets="true">
+    <apex:slds >
+        <apex:includeLightning />
+        <apex:sectionHeader title="AIPP" subtitle="Request Evaluation Copy" />
+        <apex:form >
+            
+            <apex:pageBlock title="Opportunity Information">
+                <apex:pageBlockSection >
+                    <apex:inputField value="{!opp.Name}" required="true">
+                        <apex:facet name="label">Opportunity Name</apex:facet>
+                    </apex:inputField>
+                    <apex:inputField value="{!opp.Amount}" required="true">
+                        <apex:facet name="label">Amount</apex:facet>
+                    </apex:inputField>
+                    <apex:inputField value="{!opp.CloseDate}" required="true">
+                        <apex:facet name="label">Close Date</apex:facet>
+                    </apex:inputField>
+                    <apex:inputField value="{!opp.StageName}" required="true">
+                        <apex:facet name="label">Stage Name</apex:facet>
+                    </apex:inputField>
+                    <apex:inputField value="{!opp.Type}" required="true">
+                        <apex:facet name="label">Type</apex:facet>
+                    </apex:inputField>
+                    <apex:inputField value="{!opp.Custom_Email_Field__c}" required="true">
+                        <apex:facet name="label">Email</apex:facet>
+                    </apex:inputField>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <apex:commandButton action="{!saveContactAndOpportunity}" value="Save" />
+        </apex:form>
+    </apex:slds>
+</apex:page>

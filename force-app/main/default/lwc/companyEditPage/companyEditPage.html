@@ -1,0 +1,117 @@
+<template>
+    <lightning-record-edit-form record-id={receivedRecordId} object-api-name="Competitor__c"
+        onsuccess={handleSuccess} onsubmit={handleSubmit}>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-2">
+                <div class="slds-size_1-of-1">
+
+
+         
+                    <table class="custom-table">
+                        <tr class="blue-background">
+                            <td colspan="2">Group lime capacity</td>
+                        </tr>
+                        <tr class="grey-background">
+                            <td>Estimated production t/y:</td>
+                            <td>
+                                <!-- Use lightning-output-field for Estimated Production -->
+                                <lightning-output-field field-name="Estimated_Production__c" record-id={receivedRecordId}>
+                                </lightning-output-field>
+                            </td>
+                        </tr>
+                        <tr class="grey-background">
+                            <td>Nominal capacity t/y:</td>
+                            <td>
+                                <!-- Use lightning-output-field for Nominal Capacity -->
+                                <lightning-output-field field-name="Nominal_Capacity__c" record-id={receivedRecordId}>
+                                </lightning-output-field>
+                            </td>
+                        </tr>
+                        <tr class="grey-background">
+                            <td>Free capacity t/y:</td>
+                            <td>
+                                <!-- Use lightning-output-field for Free Capacity -->
+                                <lightning-output-field field-name="Free_Capacity__c" record-id={receivedRecordId}>
+                                </lightning-output-field>
+                            </td>
+                        </tr>
+                        <tr class="grey-background">
+                            <td>Number of Kilns:</td>
+                            <td>
+                                <!-- Use lightning-output-field for Number of Kilns -->
+                                <lightning-output-field field-name="Number_of_Kilns__c" record-id={receivedRecordId}>
+                                </lightning-output-field>
+                            </td>
+                        </tr>
+                    </table><br><br><br><br>
+                    <table class="custom-table">
+                        <tr class="blue-background">
+                            <td colspan="2">ShareHolders</td>
+                        </tr>
+                        <tr class="grey-background">
+                            <td>First:</td>
+                            <td>
+                                <!-- Use lightning-output-field for Estimated Production -->
+                                <lightning-output-field field-name="First" record-id={receivedRecordId}>
+                                </lightning-output-field>
+                            </td>
+                        </tr>
+                        <tr class="grey-background">
+                            <td>Second:</td>
+                            <td>
+                                <!-- Use lightning-output-field for Nominal Capacity -->
+                                <lightning-output-field field-name="Second" record-id={receivedRecordId}>
+                                </lightning-output-field>
+                            </td>
+                        </tr>
+                        <tr class="grey-background">
+                            <td>Third:</td>
+                            <td>
+                                <!-- Use lightning-output-field for Free Capacity -->
+                                <lightning-output-field field-name="third" record-id={receivedRecordId}>
+                                </lightning-output-field>
+                            </td>
+                        </tr>
+                     
+                    </table>
+                    
+            </div>
+            </div>
+            
+            <br><br>
+            
+            <div class="slds-size_1-of-2">
+                <lightning-messages>
+                </lightning-messages>
+            
+                <lightning-output-field field-name="Name" class="text-bold">
+                </lightning-output-field>
+            
+            
+                <lightning-input-field field-name="Comments__c" class="text-bold">
+                </lightning-input-field>
+            
+                <lightning-input-field field-name="Main_Competitors__c" class="text-bold">
+                </lightning-input-field>
+            
+                <lightning-input-field field-name="Web__c" class="text-bold">
+                </lightning-input-field>
+            
+                <lightning-input-field field-name="Source__c" class="text-bold">
+                </lightning-input-field>
+            
+                <div class="slds-m-top_small slds-float_right">
+                    <lightning-button class="slds-m-right_x-small" variant="brand" type="submit" name="addplant" label="Add Plant">
+                    </lightning-button>
+            
+                    <lightning-button class="slds-m-right_x-small" variant="destructive" type="reset" name="delete" label="Delete">
+                    </lightning-button>
+            
+                    <lightning-button class="slds-m-right_x-small" variant="brand" type="submit" name="update" label="Update">
+                    </lightning-button>
+                </div>
+            </div>
+            
+    </div>
+    </lightning-record-edit-form>
+</template>

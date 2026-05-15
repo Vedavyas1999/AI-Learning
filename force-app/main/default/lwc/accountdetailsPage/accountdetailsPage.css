@@ -1,0 +1,14 @@
+.custom-layout {
+    margin: 20px; 
+}
+
+
+lightning-combobox {
+    width: 100%;
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

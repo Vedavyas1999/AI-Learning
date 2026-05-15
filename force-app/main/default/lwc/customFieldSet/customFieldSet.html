@@ -1,0 +1,15 @@
+<template>
+    <div  style="background-color:white" class="container slds-p-around_large slds-scrollable_y slds-theme_shade">
+        
+    <template if:true={fields}>
+        <lightning-record-form
+            record-id={recordId}
+            object-api-name={objectApiName}
+            fields={fields}
+            columns="2"
+            mode="view">
+        </lightning-record-form>
+    </template>
+
+</div>
+</template>
