@@ -4,5 +4,5 @@ Public with sharing class AccountCreater {
         acc.Name = 'Test Account';
         insert as user acc;
         return acc.Id;
-    }.      =
+    }
 }
